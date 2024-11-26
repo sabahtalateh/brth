@@ -1,21 +1,17 @@
-//
-//  ContentView.swift
-//  Brth
-//
-//  Created by Aleksandr Evgenievich on 26.11.2024.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var columnVisibility: NavigationSplitViewVisibility = .all
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!!!")
+        NavigationSplitView(columnVisibility: $columnVisibility) {
+            // SidebarView()
+        } detail: {
+            // DetailView()
         }
-        .padding()
+        .navigationSplitViewStyle(.balanced)
+        .tint(.primary)
+        // .opacity(playStore.hideSidebar ? 0 : 1)
     }
 }
 
