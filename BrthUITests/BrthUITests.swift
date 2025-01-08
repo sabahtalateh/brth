@@ -1,10 +1,3 @@
-//
-//  BrthUITests.swift
-//  BrthUITests
-//
-//  Created by Aleksandr Evgenievich on 26.11.2024.
-//
-
 import XCTest
 
 final class BrthUITests: XCTestCase {
