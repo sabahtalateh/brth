@@ -18,7 +18,7 @@ struct PlayView: View {
             TimelineView(.animation(paused: !playStore.playing)) { ctx in
                 ZStack {
                     let prog = playStore.progressAt(ctx.date)
-                    let el = prog.elapsed
+                    let el = prog.phaseElapsed
                     
                     
                     switch prog.phase {

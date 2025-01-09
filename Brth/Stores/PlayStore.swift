@@ -101,7 +101,7 @@ class PlayStore: ObservableObject {
         }
     }
     
-    func progressAt(_ at: Date) -> PhaseProgress {
+    func progressAt(_ at: Date) -> ExerciseProgress {
         self.timeline.progress(at.timeIntervalSince(self.startedAt))
     }
 }
