@@ -15,8 +15,7 @@ class ExercisesStore: ObservableObject {
         do {
             self.exercises = try repo.load()
         } catch {
-            // TODO: store error somewhere
-            // self.errorStore.setError(error.localizedDescription)
+            print("Error: \(error). Stack trace: \(Thread.callStackSymbols)")
             self.errorStore.setInternalError()
         }
         
@@ -27,7 +26,7 @@ class ExercisesStore: ObservableObject {
                 do {
                     try repo.save(ee)
                 } catch {
-                    // TODO: store error somewhere
+                    print("Error: \(error). Stack trace: \(Thread.callStackSymbols)")
                     self.errorStore.setInternalError()
                 }
             }

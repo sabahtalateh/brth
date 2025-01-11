@@ -47,9 +47,9 @@ struct ConstantTrackView: View {
             CustomStepper(
                 label: "Repeat Times",
                 icon: Image(systemName: "repeat"),
-                in: 1...repeatTimesInfinity,
+                in: 1...Int.infiniteRepeatTimes(),
                 value: $selectedExerciseStore.exercise.constantTrack.repeatTimes,
-                replace: [repeatTimesInfinity: Image(systemName: "infinity")]
+                replace: [.infiniteRepeatTimes(): Image(systemName: "infinity")]
             )
         } header: {
             Text("Repeat")

@@ -4,14 +4,16 @@ struct DecreasingTrackView: View {
     
     @EnvironmentObject var selectedExerciseStore: SelectedExerciseStore
     
-    @State var decreaseFrom: Int = 0
-    @State var decreaseTo: Int = 0
+    @State private var decreaseFrom: Int = 0
+    @State private var decreaseTo: Int = 0
     
-    var phase: String {
-        selectedExerciseStore.exercise.decreasingTrack.decreasePhase
+    @State private var decreaseBy: Int = 0
+    
+    var phase: Phase {
+        selectedExerciseStore.exercise.decreasingTrack.dynPhase
     }
     
-    var track: DecreasingTrackModel {
+    var track: DynamicTrackModel {
         selectedExerciseStore.exercise.decreasingTrack
     }
     
@@ -57,9 +59,9 @@ struct DecreasingTrackView: View {
         Section {
             HStack {
                 Menu {
-                    ForEach(Phases.list(), id: \.self) { phase in
+                    ForEach(Phase.allCases, id: \.self) { phase in
                         Button {
-                            selectedExerciseStore.exercise.decreasingTrack.decreasePhase = phase
+                            selectedExerciseStore.exercise.decreasingTrack.dynPhase = phase
                         } label: {
                             Label {
                                 Text(PhaseTitles.title(for: phase).capitalized)
@@ -83,7 +85,7 @@ struct DecreasingTrackView: View {
                 label: "Decrease to",
                 icon: Image(systemName: "arrow.up.right"),
                 in: decreaseFrom...decreaseTo,
-                value: $selectedExerciseStore.exercise.decreasingTrack.decreaseTo
+                value: $selectedExerciseStore.exercise.decreasingTrack.limit
             )
             .onAppear {
                 adjustDecreaseRange()
@@ -96,8 +98,14 @@ struct DecreasingTrackView: View {
                 label: "Decrease by",
                 icon: Image(systemName: "repeat"),
                 in: 1...99,
-                value: $selectedExerciseStore.exercise.decreasingTrack.decreaseBy
+                value: $decreaseBy
             )
+            .onAppear {
+                decreaseBy = -selectedExerciseStore.exercise.decreasingTrack.add
+            }
+            .onChange(of: decreaseBy) { newValue in
+                selectedExerciseStore.exercise.decreasingTrack.add = -newValue
+            }
             
         } header: {
             Text("Decrease")
@@ -107,10 +115,10 @@ struct DecreasingTrackView: View {
     }
     
     func adjustDecreaseRange() {
-        let initDur = track.initialDuration()
+        let initDur = track.dynPhaseDuration()
         
-        var rngStart = switch track.decreasePhase {
-        case Phases.in, Phases.out:
+        var rngStart = switch track.dynPhase {
+        case .in, .out:
             1
         default:
             0
@@ -127,12 +135,12 @@ struct DecreasingTrackView: View {
         decreaseFrom = rngStart
         decreaseTo = rngEnd
         
-        if selectedExerciseStore.exercise.decreasingTrack.decreaseTo < rngStart {
-            selectedExerciseStore.exercise.decreasingTrack.decreaseTo = rngStart
+        if selectedExerciseStore.exercise.decreasingTrack.limit < rngStart {
+            selectedExerciseStore.exercise.decreasingTrack.limit = rngStart
         }
         
-        if selectedExerciseStore.exercise.decreasingTrack.decreaseTo > rngEnd {
-            selectedExerciseStore.exercise.decreasingTrack.decreaseTo = rngEnd
+        if selectedExerciseStore.exercise.decreasingTrack.limit > rngEnd {
+            selectedExerciseStore.exercise.decreasingTrack.limit = rngEnd
         }
     }
 }

@@ -24,26 +24,24 @@ struct DetailView: View {
                             .disabled(editCustomTrack)
                         
                         switch selectedExerciseStore.exercise.track {
-                        case Tracks.constant:
+                        case .constant:
                             ConstantTrackView()
-                        case Tracks.increasing:
+                        case .increasing:
                             IncreasingTrackView()
-                        case Tracks.decreasing:
+                        case .decreasing:
                             DecreasingTrackView()
-                        case Tracks.custom:
+                        case .custom:
                             CustomTrackView(
                                 editCustomTrack: $editCustomTrack,
                                 scroller: scroller
                             )
-                        default:
-                            ConstantTrackView()
                         }
                     }
                     .formStyle(.grouped)
                     .scrollContentBackground(.hidden)
                     .background(.thickMaterial)
                     .toolbar {
-                        if selectedExerciseStore.exercise.track == Tracks.custom {
+                        if selectedExerciseStore.exercise.track == .custom {
                             CustomTrackToolbar(
                                 editCustomTrack: $editCustomTrack,
                                 scroller: scroller

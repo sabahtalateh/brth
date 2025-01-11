@@ -21,6 +21,7 @@ class AppExercisesRepository: Repository, ExercisesRepository {
             let data = try JSONEncoder().encode(exercises)
             try data.write(to: storageURL)
         } catch {
+            print("Error: \(error). Stack trace: \(Thread.callStackSymbols)")
             throw RepositoryError("save: " + error.localizedDescription)
         }
     }
@@ -28,17 +29,10 @@ class AppExercisesRepository: Repository, ExercisesRepository {
     func load() throws -> [ExerciseModel] {
         do {
             let jsonData = try Data(contentsOf: storageURL)
-            var exercises = try JSONDecoder().decode([ExerciseModel].self, from: jsonData)
-            
-        //     for i in exercises.indices {
-        //         for j in exercises[i].customTrack.steps.indices {
-        //             exercises[i].customTrack.steps[j].viewId = UUID().uuidString
-        //             exercises[i].customTrack.steps[j].viewIdx = j
-        //         }
-        //     }
-            
+            let exercises = try JSONDecoder().decode([ExerciseModel].self, from: jsonData)
             return exercises
         } catch {
+            print("Error: \(error). Stack trace: \(Thread.callStackSymbols)")
             throw RepositoryError("load exercises: " + error.localizedDescription)
         }
     }
@@ -59,10 +53,10 @@ extension ExerciseModel {
         ExerciseModel(
             id: "",
             title: "",
-            track: Tracks.constant,
+            track: .constant,
             constantTrack: .default(),
-            increasingTrack: .default(),
-            decreasingTrack: .default(),
+            increasingTrack: .defaultIncreasing(),
+            decreasingTrack: .defaultDecreasing(),
             customTrack: .default()
         )
     }
@@ -71,10 +65,10 @@ extension ExerciseModel {
         ExerciseModel(
             id: UUID().uuidString,
             title: title,
-            track: Tracks.constant,
+            track: .constant,
             constantTrack: .default(),
-            increasingTrack: .default(),
-            decreasingTrack: .default(),
+            increasingTrack: .defaultIncreasing(),
+            decreasingTrack: .defaultDecreasing(),
             customTrack: .default()
         )
     }
@@ -83,10 +77,10 @@ extension ExerciseModel {
         ExerciseModel(
             id: UUID().uuidString,
             title: title,
-            track: Tracks.increasing,
+            track: .increasing,
             constantTrack: .default(),
-            increasingTrack: .default(),
-            decreasingTrack: .default(),
+            increasingTrack: .defaultIncreasing(),
+            decreasingTrack: .defaultDecreasing(),
             customTrack: .default()
         )
     }
@@ -95,10 +89,10 @@ extension ExerciseModel {
         ExerciseModel(
             id: UUID().uuidString,
             title: title,
-            track: Tracks.decreasing,
+            track: .decreasing,
             constantTrack: .default(),
-            increasingTrack: .default(),
-            decreasingTrack: .default(),
+            increasingTrack: .defaultIncreasing(),
+            decreasingTrack: .defaultDecreasing(),
             customTrack: .default()
         )
     }
@@ -107,10 +101,10 @@ extension ExerciseModel {
         ExerciseModel(
             id: UUID().uuidString,
             title: title,
-            track: Tracks.custom,
+            track: .custom,
             constantTrack: .default(),
-            increasingTrack: .default(),
-            decreasingTrack: .default(),
+            increasingTrack: .defaultIncreasing(),
+            decreasingTrack: .defaultDecreasing(),
             customTrack: .default()
         )
     }

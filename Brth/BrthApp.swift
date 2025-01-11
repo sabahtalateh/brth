@@ -5,13 +5,31 @@ struct BrthApp: App {
     
     @Namespace var rootNS
     
-    var body: some Scene {
-        let exercisesRepo = AppExercisesRepository()
+    let exercisesRepo: ExercisesRepository
+    
+    let errorStore: ErrorStore
+    let settingsStore: SettingsStore
+    let exercisesStore: ExercisesStore
+    let selectedExerciseStore: SelectedExerciseStore
+    
+    init() {
+        exercisesRepo = AppExercisesRepository()
         
-        let errorStore = ErrorStore()
-        let settingsStore = SettingsStore()
-        let exercisesStore = ExercisesStore(errorStore, exercisesRepo)
-        let selectedExerciseStore = SelectedExerciseStore(exercisesStore, exercisesRepo)
+        errorStore = ErrorStore()
+        
+        do {
+            try exercisesRepo.populateExamples()
+        } catch {
+            print("Error: \(error). Stack trace: \(Thread.callStackSymbols)")
+            errorStore.setInternalError()
+        }
+        
+        settingsStore = SettingsStore()
+        exercisesStore = ExercisesStore(errorStore, exercisesRepo)
+        selectedExerciseStore = SelectedExerciseStore(exercisesStore, exercisesRepo)
+    }
+    
+    var body: some Scene {
         let playStore = PlayStore(ns: rootNS)
         
         WindowGroup {

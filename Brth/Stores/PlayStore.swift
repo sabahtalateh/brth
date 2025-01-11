@@ -98,10 +98,14 @@ class PlayStore: ObservableObject {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + totalDelay) {
             self.playCirclePlacement = .unset
+            self.playing = false
         }
     }
     
     func progressAt(_ at: Date) -> ExerciseProgress {
-        self.timeline.progress(at.timeIntervalSince(self.startedAt))
+        if !self.playing {
+            return ExerciseProgress()
+        }
+        return self.timeline.progress(at.timeIntervalSince(self.startedAt))
     }
 }

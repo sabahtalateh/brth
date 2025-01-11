@@ -1,19 +1,19 @@
 import SwiftUI
 
-fileprivate let trackTexts: [String: (String, String)] = [
-    Tracks.constant: (
+fileprivate let trackTexts: [Track: (String, String)] = [
+    .constant: (
         "Constant",
         "Each phase of the breathing cycle has same duration throughout the exercise"
     ),
-    Tracks.increasing: (
+    .increasing: (
         "Increasing",
         "Duration of one of phases of breathing cycle gradually increases over time"
     ),
-    Tracks.decreasing: (
+    .decreasing: (
         "Decreasing",
         "Duration of one of phases of breathing cycle gradually decreases over time"
     ),
-    Tracks.custom: (
+    .custom: (
         "Custom",
         "Manually compose exercise"
     )
@@ -21,7 +21,7 @@ fileprivate let trackTexts: [String: (String, String)] = [
 
 struct TrackPickerView: View {
     
-    @Binding var track: String
+    @Binding var track: Track
     
     var trackTitle: String {
         if let tt = trackTexts[track] {
@@ -42,10 +42,10 @@ struct TrackPickerView: View {
     var body: some View {
         Section {
             Picker("Exercise Track", selection: $track) {
-                Image(systemName: "circle.circle").tag(Tracks.constant)
-                Image(systemName: "arrow.up.right").tag(Tracks.increasing)
-                Image(systemName: "arrow.down.right").tag(Tracks.decreasing)
-                Image(systemName: "circle.dotted").tag(Tracks.custom)
+                Image(systemName: "circle.circle").tag(Track.constant)
+                Image(systemName: "arrow.up.right").tag(Track.increasing)
+                Image(systemName: "arrow.down.right").tag(Track.decreasing)
+                Image(systemName: "circle.dotted").tag(Track.custom)
             }
             .pickerStyle(.segmented)
             .listRowSeparator(.hidden)
@@ -65,10 +65,10 @@ struct TrackPickerView: View {
 
 #Preview {
     Form {
-        TrackPickerView(track: .constant(Tracks.constant))
-        TrackPickerView(track: .constant(Tracks.increasing))
-        TrackPickerView(track: .constant(Tracks.decreasing))
-        TrackPickerView(track: .constant(Tracks.custom))
+        TrackPickerView(track: .constant(Track.constant))
+        TrackPickerView(track: .constant(Track.increasing))
+        TrackPickerView(track: .constant(Track.decreasing))
+        TrackPickerView(track: .constant(Track.custom))
     }
     .preferredColorScheme(.dark)
 }

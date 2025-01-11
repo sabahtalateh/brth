@@ -14,6 +14,7 @@ class Repository {
         do {
             try initFileSystem()
         } catch {
+            print("Error: \(error). Stack trace: \(Thread.callStackSymbols)")
             initError = error
         }
     }

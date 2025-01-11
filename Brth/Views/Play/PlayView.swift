@@ -20,9 +20,8 @@ struct PlayView: View {
                     let prog = playStore.progressAt(ctx.date)
                     let el = prog.phaseElapsed
                     
-                    
                     switch prog.phase {
-                    case Phases.in:
+                    case .in:
                         Circle()
                             .fill(.secondary)
                             .overlay {
@@ -32,7 +31,7 @@ struct PlayView: View {
                                         .monospacedDigit()
                                 }
                             }
-                    case Phases.inHold:
+                    case .inHold:
                         Circle()
                             .fill(.secondary)
                             .overlay {
@@ -42,7 +41,7 @@ struct PlayView: View {
                                         .monospacedDigit()
                                 }
                             }
-                    case Phases.out:
+                    case .out:
                         Circle()
                             .fill(.secondary)
                             .overlay {
@@ -52,7 +51,7 @@ struct PlayView: View {
                                         .monospacedDigit()
                                 }
                             }
-                    case Phases.outHold:
+                    case .outHold:
                         Circle()
                             .fill(.secondary)
                             .overlay {
@@ -61,12 +60,6 @@ struct PlayView: View {
                                     Text("\(el)")
                                         .monospacedDigit()
                                 }
-                            }
-                    default:
-                        Circle()
-                            .fill(.secondary)
-                            .overlay {
-                                Text("Not Implemented")
                             }
                     }
                     

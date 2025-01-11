@@ -1,57 +1,61 @@
 import Foundation
 
+struct PhaseTiming {
+    var phase: Phase
+    var startSecond: Int
+    var duration: Int
+}
+
+typealias PhaseTimings = [PhaseTiming]
+
+extension PhaseTimings {
+    mutating func add(phase: Phase, duration: Int) {
+        let startS = self.endIndex
+        for _ in 0..<duration {
+            self.append(PhaseTiming(phase: phase, startSecond: startS, duration: duration))
+        }
+    }
+}
+
 struct ExerciseProgress {
-    var phase: String = Phases.in
+    var phase: Phase = .in
     var phaseElapsed: Double = 0
-    var phaseTotal: Double = 0
+    var phaseDuration: Double = 0
     var done: Bool = false
 }
 
 class ExerciseTimeline {
     
-    // [Phase Start Second: (Phase, Phase Duration)]
-    private var timeline: [Int: (String, Int)] = [:]
-    private var totalDuration: Int = 0
+    private var timings: PhaseTimings = []
     private var infiniteRepeat: Bool = false
     
     func progress(_ elapsed: TimeInterval) -> ExerciseProgress {
-        var elapsedS = Int(elapsed)
         
-        if elapsedS >= self.totalDuration {
-            return ExerciseProgress(done: true)
-        }
+        var elapsedS = Int(elapsed)
         
         // Will be set only for infinite exercises
         var fullCyclesPassedTime: Int = 0
-        let td = self.totalDuration
-        if self.infiniteRepeat && td != 0 {
-            fullCyclesPassedTime = elapsedS / td * td
-            elapsedS = elapsedS % td
-        }
         
-        var phase: (String, Int)
-        while true {
-            if elapsedS < 0 {
-                return ExerciseProgress()
+        if !self.infiniteRepeat {
+            if timings.count - 1 < elapsedS {
+                return ExerciseProgress(done: true)
             }
-            
-            if let p = self.timeline[elapsedS] {
-                phase = p
-                break
-            } else {
-                elapsedS = elapsedS - 1
+        } else {
+            let td = self.timings.endIndex
+            if self.infiniteRepeat && td != 0 {
+                fullCyclesPassedTime = elapsedS / td * td
+                elapsedS = elapsedS % td
             }
         }
         
-        let (phaseName, phaseStartS) = phase
+        let phaseT = timings[elapsedS]
         
-        let elapsedOfPhase = elapsed - Double(elapsedS) - Double(fullCyclesPassedTime)
-        let totalOfPhase = Double(phaseStartS)
+        let elapsedOfPhase = elapsed - Double(phaseT.startSecond) - Double(fullCyclesPassedTime)
         
         let p = ExerciseProgress(
-            phase: phaseName,
+            phase: phaseT.phase,
             phaseElapsed: elapsedOfPhase,
-            phaseTotal: totalOfPhase
+            phaseDuration: Double(phaseT.duration)
         )
         
         return p
@@ -59,113 +63,64 @@ class ExerciseTimeline {
     
     static func forModel(_ e: ExerciseModel) -> ExerciseTimeline {
         switch e.track {
-        case Tracks.constant:
+        case .constant:
             forConstant(e.constantTrack)
-        case Tracks.increasing:
-            forIncreasing(e.increasingTrack)
+        case .increasing:
+            forDynamic(e.increasingTrack)
+        case .decreasing:
+            forDynamic(e.decreasingTrack)
         default:
             ExerciseTimeline()
         }
     }
     
     private static func forConstant(_ m: ConstantTrackModel) -> ExerciseTimeline {
-        var sec = 0
         
         let etl: ExerciseTimeline = .init()
-        var tl: [Int: (String, Int)] = [:]
+        
+        var timings: PhaseTimings = []
         
         for _ in 0..<m.repeatTimes {
-            if m.in != 0 {
-                tl[sec] = (Phases.in, m.in)
-                sec += m.in
-            }
-            if m.inHold != 0 {
-                tl[sec] = (Phases.inHold, m.inHold)
-                sec += m.inHold
-            }
-            if m.out != 0 {
-                tl[sec] = (Phases.out, m.out)
-                sec += m.out
-            }
-            if m.outHold != 0 {
-                tl[sec] = (Phases.outHold, m.outHold)
-                sec += m.outHold
-            }
+            timings.add(phase: .in, duration: m.in)
+            timings.add(phase: .inHold, duration: m.inHold)
+            timings.add(phase: .out, duration: m.out)
+            timings.add(phase: .outHold, duration: m.outHold)
             
-            etl.totalDuration += m.in + m.inHold + m.out + m.outHold
-            
-            if m.repeatTimes == repeatTimesInfinity {
+            if m.repeatTimes.isInfiniteRepeatTimes() {
                 etl.infiniteRepeat = true
                 break
             }
         }
         
-        etl.timeline = tl
+        etl.timings = timings
         
         return etl
     }
     
-    private static func forIncreasing(_ mdl: IncreasingTrackModel) -> ExerciseTimeline {
-        var m = mdl
-        
-        var sec = 0
-        
-        let etl: ExerciseTimeline = .init()
-        var tl: [Int: (String, Int)] = [:]
-
-    L:
-        while true {
-            let increased = switch m.increasePhase {
-            case Phases.in:
-                m.in
-            case Phases.inHold:
-                m.inHold
-            case Phases.out:
-                m.out
-            case Phases.outHold:
-                m.outHold
-            default:
-                0
-            }
-            
-            if m.in != 0 {
-                tl[sec] = (Phases.in, m.in)
-                sec += m.in
-            }
-            if m.inHold != 0 {
-                tl[sec] = (Phases.inHold, m.inHold)
-                sec += m.inHold
-            }
-            if m.out != 0 {
-                tl[sec] = (Phases.out, m.out)
-                sec += m.out
-            }
-            if m.outHold != 0 {
-                tl[sec] = (Phases.outHold, m.outHold)
-                sec += m.outHold
-            }
-            
-            etl.totalDuration += m.in + m.inHold + m.out + m.outHold
-            
-            if increased >= m.increaseTo {
-                break L
-            }
-            
-            switch m.increasePhase {
-            case Phases.in:
-                m.in = min(m.in + m.increaseBy, m.increaseTo)
-            case Phases.inHold:
-                m.inHold = min(m.inHold + m.increaseBy, m.increaseTo)
-            case Phases.out:
-                m.out = min(m.out + m.increaseBy, m.increaseTo)
-            case Phases.outHold:
-                m.outHold = min(m.outHold + m.increaseBy, m.increaseTo)
-            default:
-                ()
-            }
+    private static func forDynamic(_ mdl: DynamicTrackModel) -> ExerciseTimeline {
+        if !mdl.needToIterate() {
+            return ExerciseTimeline()
         }
         
-        etl.timeline = tl
+        var m = mdl
+        
+        let etl: ExerciseTimeline = .init()
+        var timings: PhaseTimings = []
+        
+        while true {
+            timings.add(phase: .in, duration: m.in)
+            timings.add(phase: .inHold, duration: m.inHold)
+            timings.add(phase: .out, duration: m.out)
+            timings.add(phase: .outHold, duration: m.outHold)
+            
+            if m.limitReached() {
+                break
+            }
+            
+            m.addToDynPhaseDuration(m.add)
+        }
+        
+        etl.timings = timings
         
         return etl
     }
