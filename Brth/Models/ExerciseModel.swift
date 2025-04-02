@@ -149,4 +149,17 @@ struct ExerciseModel: Equatable, Codable {
     var increasingTrack: DynamicTrackModel
     var decreasingTrack: DynamicTrackModel
     var customTrack: CustomTrackModel
+    
+    var duration: ExerciseDuration {
+        switch self.track {
+        case .constant:
+            constantTrack.duration()
+        case .increasing:
+            increasingTrack.duration()
+        case .decreasing:
+            decreasingTrack.duration()
+        case .custom:
+            customTrack.duration()
+        }
+    }
 }

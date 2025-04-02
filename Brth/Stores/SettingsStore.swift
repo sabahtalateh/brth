@@ -1,7 +1,7 @@
 import SwiftUI
 
 class SettingsStore: ObservableObject {
-    @AppStorage("populate_examples")
+    @AppStorage("examples_populated")
     var examplesPopulated: Bool = false
     
     

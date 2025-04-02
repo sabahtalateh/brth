@@ -1,15 +1,24 @@
-//
-//  BlendMode.swift
-//  Brth
-//
-//  Created by Aleksandr Evgenievich on 03.02.2025.
-//
-
 import SwiftUI
 
 struct BlendMode: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Circle()
+                .fill(.white)
+                .frame(width: 100, height: 100)
+                .blur(radius: 20)
+            
+            Circle()
+                .fill(.white)
+                .frame(width: 100, height: 100)
+                .opacity(0.6)
+                .blur(radius: 20)
+            
+        }
+        // .blendMode(.screen)
+        .blendMode(.plusLighter)
+        // .blendMode(.hardLight)
+        .preferredColorScheme(.dark)
     }
 }
 

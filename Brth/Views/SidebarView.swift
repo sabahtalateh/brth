@@ -19,32 +19,28 @@ struct SidebarView: View {
             
             List {
                 ForEach(exercisesStore.exercises, id: \.id) { e in
-                    let ns = playStore.ns
-                    let nsID = PlayCirclePlacement.sidebarElement(e.id).nsID()
-                    let isSrc = playStore.playCirclePlacement == .sidebarElement(e.id)
-                    
                     Button {
                         // select exercise only if not editing list
-                        if editMode != .active {
-                            selectedExerciseStore.exercise = e
-                            selectedExerciseStore.detailTitle = e.title
-                            presentDestination = true
+                        if editMode == .active {
+                            return
                         }
+                        
+                        selectedExerciseStore.exercise = e
+                        selectedExerciseStore.detailTitle = e.title
+                        presentDestination = true
                     } label: {
                         HStack {
                             Circle()
                                 .frame(width: 50, height: 50)
                                 .onTapGesture {
-                                    // select exercise only if not editing list
-                                    if editMode != .active {
-                                        playStore.play(from: .sidebarElement(e.id), e: e)
-                                        // print("Circle pressed", e.id)
-                                        // selectedExerciseStore.exercise = e
-                                        // selectedExerciseStore.detailTitle = e.title
-                                        // presentDestination = true
+                                    // play exercise only if not editing list
+                                    if editMode == .active {
+                                        return
                                     }
+                                    
+                                    playStore.setExercise(e)
+                                    playStore.play()
                                 }
-                                .matchedGeometryEffect(id: nsID, in: ns, isSource: isSrc)
                             Text("\(e.title)")
                         }
                     }
@@ -70,7 +66,13 @@ struct SidebarView: View {
             .navigationDestination(isPresented: $presentDestination, destination: {
                 DetailView(editCustomTrack: $editCustomTrack)
                     .onDisappear {
-                        // reset selected row highlight
+                        // skip reset selected exercise when view disappear
+                        // due to user started exercise
+                        if playStore.skipExerciseUnselect {
+                            return
+                        }
+                        
+                        // reset selected exercise and row highlight
                         selectedExerciseStore.detailTitle = ""
                         selectedExerciseStore.exercise = .empty()
                     }
@@ -123,21 +125,26 @@ struct SidebarView: View {
             }
         }
         .disabled(editCustomTrack)
+        // MARK: - debug: start exercise on app opens
+        // .onAppear {
+        //     playStore.setExercise(exercisesStore.exercises[1])
+        //     playStore.play()
+        // }
     }
 }
 
-#Preview {
-    
-    let exercisesRepo = PreviewExercisesRepository()
-    
-    let errorStore = ErrorStore()
-    let exercisesStore = ExercisesStore(errorStore, exercisesRepo)
-    let selectedExerciseStore = SelectedExerciseStore(exercisesStore, exercisesRepo)
-    
-    SidebarView(editCustomTrack: .constant(false))
-        .preferredColorScheme(.dark)
-        .environmentObject(errorStore)
-        .environmentObject(exercisesStore)
-        .environmentObject(selectedExerciseStore)
-        .environmentObject(PlayStore(ns: Namespace().wrappedValue))
-}
+// #Preview {
+//     
+//     let exercisesRepo = PreviewExercisesRepository()
+//     
+//     let errorStore = ErrorStore()
+//     let exercisesStore = ExercisesStore(errorStore, exercisesRepo)
+//     let selectedExerciseStore = SelectedExerciseStore(exercisesStore, exercisesRepo)
+//     
+//     SidebarView(editCustomTrack: .constant(false))
+//         .preferredColorScheme(.dark)
+//         .environmentObject(errorStore)
+//         .environmentObject(exercisesStore)
+//         .environmentObject(selectedExerciseStore)
+//         .environmentObject(PlayStore(ns: Namespace().wrappedValue))
+// }

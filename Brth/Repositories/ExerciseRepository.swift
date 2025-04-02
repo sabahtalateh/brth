@@ -39,6 +39,15 @@ class AppExercisesRepository: Repository, ExercisesRepository {
     
     func populateExamples() throws {
         try save([
+            .init(
+                id: UUID().uuidString,
+                title: "1 in; 1 out; x10",
+                track: .constant,
+                constantTrack: .init(in: 1, inHold: 0, out: 1, outHold: 0, repeatTimes: 100),
+                increasingTrack: .defaultIncreasing(),
+                decreasingTrack: .defaultDecreasing(),
+                customTrack: .default()
+            ),
             .defaultConstant(title: "5 in; 5 out"),
             .defaultIncreasing(title: "In 1 to 10"),
             .defaultDecreasing(title: "In 10 to 1"),

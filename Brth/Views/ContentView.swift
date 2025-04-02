@@ -7,21 +7,25 @@ struct ContentView: View {
     
     @State private var editCustomTrack: Bool = false
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
+    @State private var exercisePlaying: Bool = false
     
     var body: some View {
-        let navViewOpacity = 1 - playStore.playCircleOpacity
-        
         ZStack {
-            PlayView()
-            
-            NavigationSplitView(columnVisibility: $columnVisibility) {
-                SidebarView(editCustomTrack: $editCustomTrack)
-            } detail: {
-                DetailView(editCustomTrack: $editCustomTrack)
+            if playStore.showPlayView {
+                PlayView()
+                    .transition(.move(edge: .trailing))
             }
-            .navigationSplitViewStyle(.balanced)
-            .tint(.primary)
-            .opacity(navViewOpacity)
+            
+            if !playStore.hideNavSplitView {
+                NavigationSplitView(columnVisibility: $columnVisibility) {
+                    SidebarView(editCustomTrack: $editCustomTrack)
+                } detail: {
+                    DetailView(editCustomTrack: $editCustomTrack)
+                }
+                .navigationSplitViewStyle(.balanced)
+                .tint(.primary)
+                .transition(.move(edge: .leading))
+            }
         }
         .alert(
             errorStore.text,
@@ -34,22 +38,19 @@ struct ContentView: View {
         )
         .ignoresSafeArea()
         .preferredColorScheme(.dark)
-        .onAppear {
-            
-        }
     }
 }
 
-#Preview {
-    let exercisesRepo = PreviewExercisesRepository()
-    
-    let errorStore = ErrorStore()
-    let exercisesStore = ExercisesStore(errorStore, exercisesRepo)
-    let selectedExerciseStore = SelectedExerciseStore(exercisesStore, exercisesRepo)
-
-    ContentView()
-        .environmentObject(errorStore)
-        .environmentObject(exercisesStore)
-        .environmentObject(selectedExerciseStore)
-        .environmentObject(PlayStore(ns: Namespace().wrappedValue))
-}
+// #Preview {
+//     let exercisesRepo = PreviewExercisesRepository()
+//     
+//     let errorStore = ErrorStore()
+//     let exercisesStore = ExercisesStore(errorStore, exercisesRepo)
+//     let selectedExerciseStore = SelectedExerciseStore(exercisesStore, exercisesRepo)
+// 
+//     ContentView()
+//         .environmentObject(errorStore)
+//         .environmentObject(exercisesStore)
+//         .environmentObject(selectedExerciseStore)
+//         .environmentObject(PlayStore(ns: Namespace().wrappedValue))
+// }

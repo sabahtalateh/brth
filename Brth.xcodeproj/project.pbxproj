@@ -7,10 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73BE71862D6D29A600CF0F4D /* BrthWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 73BE71632D6D29A400CF0F4D /* BrthWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		73D1005B2CF8FAD600AA10DB /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = 73D1005A2CF8FAD000AA10DB /* README.MD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		73BE71732D6D29A600CF0F4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73E7343D2CF6588600A931BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73BE71622D6D29A400CF0F4D;
+			remoteInfo = "BrthWatch Watch App";
+		};
+		73BE717D2D6D29A600CF0F4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73E7343D2CF6588600A931BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73BE71622D6D29A400CF0F4D;
+			remoteInfo = "BrthWatch Watch App";
+		};
+		73BE71842D6D29A600CF0F4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73E7343D2CF6588600A931BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73BE71622D6D29A400CF0F4D;
+			remoteInfo = "BrthWatch Watch App";
+		};
 		73E734562CF6588800A931BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 73E7343D2CF6588600A931BB /* Project object */;
@@ -27,16 +49,71 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		73F067C02D4E56EE006EA0FF /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				73BE71862D6D29A600CF0F4D /* BrthWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		73BE71632D6D29A400CF0F4D /* BrthWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BrthWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		73BE71722D6D29A600CF0F4D /* BrthWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BrthWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		73BE717C2D6D29A600CF0F4D /* BrthWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BrthWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D1005A2CF8FAD000AA10DB /* README.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
 		73E734452CF6588600A931BB /* Brth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E734552CF6588800A931BB /* BrthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E7345F2CF6588800A931BB /* BrthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		73BE71912D6D2A0A00CF0F4D /* Exceptions for "Brth" folder in "BrthWatch Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/ExerciseDuration.swift,
+				Models/ExerciseModel.swift,
+				ParticleSystem/ParticleSystem.swift,
+				ParticleSystem/ParticleSystemPlayground.swift,
+				Repositories/DefaultModels.swift,
+				Repositories/ExerciseRepository.swift,
+				Repositories/Repository.swift,
+				Repositories/RepositoryError.swift,
+				Stores/ExerciseTimeline.swift,
+				Views/Common.swift,
+				Views/ParticlesLayer.swift,
+			);
+			target = 73BE71622D6D29A400CF0F4D /* BrthWatch Watch App */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		73BE71642D6D29A400CF0F4D /* BrthWatch Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "BrthWatch Watch App";
+			sourceTree = "<group>";
+		};
+		73BE71752D6D29A600CF0F4D /* BrthWatch Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "BrthWatch Watch AppTests";
+			sourceTree = "<group>";
+		};
+		73BE717F2D6D29A600CF0F4D /* BrthWatch Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "BrthWatch Watch AppUITests";
+			sourceTree = "<group>";
+		};
 		73E734472CF6588600A931BB /* Brth */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				73BE71912D6D2A0A00CF0F4D /* Exceptions for "Brth" folder in "BrthWatch Watch App" target */,
+			);
 			path = Brth;
 			sourceTree = "<group>";
 		};
@@ -53,6 +130,27 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		73BE71602D6D29A400CF0F4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73BE716F2D6D29A600CF0F4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73BE71792D6D29A600CF0F4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		73E734422CF6588600A931BB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -84,6 +182,9 @@
 				73E734472CF6588600A931BB /* Brth */,
 				73E734582CF6588800A931BB /* BrthTests */,
 				73E734622CF6588800A931BB /* BrthUITests */,
+				73BE71642D6D29A400CF0F4D /* BrthWatch Watch App */,
+				73BE71752D6D29A600CF0F4D /* BrthWatch Watch AppTests */,
+				73BE717F2D6D29A600CF0F4D /* BrthWatch Watch AppUITests */,
 				73E734462CF6588600A931BB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,6 +195,9 @@
 				73E734452CF6588600A931BB /* Brth.app */,
 				73E734552CF6588800A931BB /* BrthTests.xctest */,
 				73E7345F2CF6588800A931BB /* BrthUITests.xctest */,
+				73BE71632D6D29A400CF0F4D /* BrthWatch Watch App.app */,
+				73BE71722D6D29A600CF0F4D /* BrthWatch Watch AppTests.xctest */,
+				73BE717C2D6D29A600CF0F4D /* BrthWatch Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +205,74 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		73BE71622D6D29A400CF0F4D /* BrthWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73BE71872D6D29A600CF0F4D /* Build configuration list for PBXNativeTarget "BrthWatch Watch App" */;
+			buildPhases = (
+				73BE715F2D6D29A400CF0F4D /* Sources */,
+				73BE71602D6D29A400CF0F4D /* Frameworks */,
+				73BE71612D6D29A400CF0F4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				73BE71642D6D29A400CF0F4D /* BrthWatch Watch App */,
+			);
+			name = "BrthWatch Watch App";
+			packageProductDependencies = (
+			);
+			productName = "BrthWatch Watch App";
+			productReference = 73BE71632D6D29A400CF0F4D /* BrthWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		73BE71712D6D29A600CF0F4D /* BrthWatch Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73BE718A2D6D29A600CF0F4D /* Build configuration list for PBXNativeTarget "BrthWatch Watch AppTests" */;
+			buildPhases = (
+				73BE716E2D6D29A600CF0F4D /* Sources */,
+				73BE716F2D6D29A600CF0F4D /* Frameworks */,
+				73BE71702D6D29A600CF0F4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73BE71742D6D29A600CF0F4D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				73BE71752D6D29A600CF0F4D /* BrthWatch Watch AppTests */,
+			);
+			name = "BrthWatch Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "BrthWatch Watch AppTests";
+			productReference = 73BE71722D6D29A600CF0F4D /* BrthWatch Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		73BE717B2D6D29A600CF0F4D /* BrthWatch Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73BE718D2D6D29A600CF0F4D /* Build configuration list for PBXNativeTarget "BrthWatch Watch AppUITests" */;
+			buildPhases = (
+				73BE71782D6D29A600CF0F4D /* Sources */,
+				73BE71792D6D29A600CF0F4D /* Frameworks */,
+				73BE717A2D6D29A600CF0F4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73BE717E2D6D29A600CF0F4D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				73BE717F2D6D29A600CF0F4D /* BrthWatch Watch AppUITests */,
+			);
+			name = "BrthWatch Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "BrthWatch Watch AppUITests";
+			productReference = 73BE717C2D6D29A600CF0F4D /* BrthWatch Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		73E734442CF6588600A931BB /* Brth */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73E734692CF6588800A931BB /* Build configuration list for PBXNativeTarget "Brth" */;
@@ -108,10 +280,12 @@
 				73E734412CF6588600A931BB /* Sources */,
 				73E734422CF6588600A931BB /* Frameworks */,
 				73E734432CF6588600A931BB /* Resources */,
+				73F067C02D4E56EE006EA0FF /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				73BE71852D6D29A600CF0F4D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				73E734472CF6588600A931BB /* Brth */,
@@ -176,9 +350,20 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					73BE71622D6D29A400CF0F4D = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					73BE71712D6D29A600CF0F4D = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 73BE71622D6D29A400CF0F4D;
+					};
+					73BE717B2D6D29A600CF0F4D = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 73BE71622D6D29A400CF0F4D;
+					};
 					73E734442CF6588600A931BB = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -211,11 +396,35 @@
 				73E734442CF6588600A931BB /* Brth */,
 				73E734542CF6588800A931BB /* BrthTests */,
 				73E7345E2CF6588800A931BB /* BrthUITests */,
+				73BE71622D6D29A400CF0F4D /* BrthWatch Watch App */,
+				73BE71712D6D29A600CF0F4D /* BrthWatch Watch AppTests */,
+				73BE717B2D6D29A600CF0F4D /* BrthWatch Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		73BE71612D6D29A400CF0F4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73BE71702D6D29A600CF0F4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73BE717A2D6D29A600CF0F4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		73E734432CF6588600A931BB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +450,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		73BE715F2D6D29A400CF0F4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73BE716E2D6D29A600CF0F4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73BE71782D6D29A600CF0F4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		73E734412CF6588600A931BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -265,6 +495,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		73BE71742D6D29A600CF0F4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73BE71622D6D29A400CF0F4D /* BrthWatch Watch App */;
+			targetProxy = 73BE71732D6D29A600CF0F4D /* PBXContainerItemProxy */;
+		};
+		73BE717E2D6D29A600CF0F4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73BE71622D6D29A400CF0F4D /* BrthWatch Watch App */;
+			targetProxy = 73BE717D2D6D29A600CF0F4D /* PBXContainerItemProxy */;
+		};
+		73BE71852D6D29A600CF0F4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73BE71622D6D29A400CF0F4D /* BrthWatch Watch App */;
+			targetProxy = 73BE71842D6D29A600CF0F4D /* PBXContainerItemProxy */;
+		};
 		73E734572CF6588800A931BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 73E734442CF6588600A931BB /* Brth */;
@@ -278,6 +523,144 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		73BE71882D6D29A600CF0F4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BrthWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = RNWDXP8LK9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BrthWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sabahteleteh.Brth;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sabahteleteh.Brth.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		73BE71892D6D29A600CF0F4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BrthWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = RNWDXP8LK9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BrthWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sabahteleteh.Brth;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sabahteleteh.Brth.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
+		73BE718B2D6D29A600CF0F4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RNWDXP8LK9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sabahteleteh.BrthWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BrthWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BrthWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		73BE718C2D6D29A600CF0F4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RNWDXP8LK9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sabahteleteh.BrthWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BrthWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BrthWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
+		73BE718E2D6D29A600CF0F4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RNWDXP8LK9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sabahteleteh.BrthWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "BrthWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		73BE718F2D6D29A600CF0F4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RNWDXP8LK9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sabahteleteh.BrthWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "BrthWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
 		73E734672CF6588800A931BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -536,6 +919,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		73BE71872D6D29A600CF0F4D /* Build configuration list for PBXNativeTarget "BrthWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73BE71882D6D29A600CF0F4D /* Debug */,
+				73BE71892D6D29A600CF0F4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73BE718A2D6D29A600CF0F4D /* Build configuration list for PBXNativeTarget "BrthWatch Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73BE718B2D6D29A600CF0F4D /* Debug */,
+				73BE718C2D6D29A600CF0F4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73BE718D2D6D29A600CF0F4D /* Build configuration list for PBXNativeTarget "BrthWatch Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73BE718E2D6D29A600CF0F4D /* Debug */,
+				73BE718F2D6D29A600CF0F4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		73E734402CF6588600A931BB /* Build configuration list for PBXProject "Brth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

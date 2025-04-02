@@ -30,7 +30,13 @@ struct BrthApp: App {
     }
     
     var body: some Scene {
-        let playStore = PlayStore(ns: rootNS)
+        let playStore = PlayStore(ns: rootNS, particleSystem: .init(
+            spawnRate: 20,
+            limit: 99,
+            velocity: 0,
+            particleRadius: 0.003..<0.009,
+            innerRadius: 0
+        ))
         
         WindowGroup {
             ContentView()

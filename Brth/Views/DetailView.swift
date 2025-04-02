@@ -73,26 +73,26 @@ struct DetailView: View {
     }
 }
 
-#Preview {
-    let exercisesRepo = PreviewExercisesRepository()
-    
-    let errorStore = ErrorStore()
-    let exercisesStore = ExercisesStore(errorStore, exercisesRepo)
-    let selectedExerciseStore = SelectedExerciseStore(exercisesStore, exercisesRepo)
-    
-    let _ = selectedExerciseStore.exercise = .defaultConstant(title: "123")
-    
-    NavigationSplitView {
-        Text("")
-            .navigationDestination(isPresented: .constant(true)) {
-                DetailView(editCustomTrack: .constant(false))
-            }
-    } detail: {
-        
-    }
-    .tint(.primary)
-    .preferredColorScheme(.dark)
-    .ignoresSafeArea()
-    .environmentObject(selectedExerciseStore)
-    .environmentObject(PlayStore(ns: Namespace().wrappedValue))
-}
+// #Preview {
+//     let exercisesRepo = PreviewExercisesRepository()
+//     
+//     let errorStore = ErrorStore()
+//     let exercisesStore = ExercisesStore(errorStore, exercisesRepo)
+//     let selectedExerciseStore = SelectedExerciseStore(exercisesStore, exercisesRepo)
+//     
+//     let _ = selectedExerciseStore.exercise = .defaultConstant(title: "123")
+//     
+//     NavigationSplitView {
+//         Text("")
+//             .navigationDestination(isPresented: .constant(true)) {
+//                 DetailView(editCustomTrack: .constant(false))
+//             }
+//     } detail: {
+//         
+//     }
+//     .tint(.primary)
+//     .preferredColorScheme(.dark)
+//     .ignoresSafeArea()
+//     .environmentObject(selectedExerciseStore)
+//     .environmentObject(PlayStore(ns: Namespace().wrappedValue))
+// }
